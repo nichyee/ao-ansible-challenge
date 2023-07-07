@@ -1,0 +1,7 @@
+---
+roles:
+  - name: ec2
+    src: ../roles/ec2
+
+  - name: webserver
+    src: ../roles/webserver
