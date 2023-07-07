@@ -1,0 +1,17 @@
+---
+- name: Create ec2
+  hosts: localhost
+  vars_files:
+    - secret.yml
+  roles:
+    - role: ec2
+      ec2key: "ec2key"
+      count: 1
+      tag_name: "webserver"
+      accesskey: "{{ akey }}"
+      secretkey: "{{ skey }}"
+
+- name: Tag ec2 name
+  hosts: tag_Name_webserver
+  roles:
+    - webserver
