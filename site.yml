@@ -15,3 +15,9 @@
   hosts: tag_Name_webserver
   roles:
     - webserver
+
+
+#Host github.com-powercor
+#        User git
+#        HostName github.com
+#        IdentityFile ~/.ssh/id_rsa_powercor
