@@ -28,20 +28,3 @@
         ec2_name: "{{ item.name }}"
         key_name: "{{ ec2_key_name }}"
       loop: "{{ ec2_instances }}"
-
-# - name: Create ec2
-#   hosts: localhost
-#   vars_files:
-#     - secret.yml
-#   roles:
-#     - role: ec2
-#       ec2key: "ec2key"
-#       count: 1
-#       tag_name: "webserver"
-#       accesskey: "{{ akey }}"
-#       secretkey: "{{ skey }}"
-
-# - name: Setup webserver
-#   hosts: tag_Name_webserver
-#   roles:
-#     - webserver
