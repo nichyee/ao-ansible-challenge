@@ -1,0 +1,8 @@
+plugin: amazon.aws.aws_ec2
+# Populate inventory with instances in these regions
+regions:
+  - ap-southeast-2
+filters:
+  # All instances with their state as `running`
+  instance-state-name: running
+  tag:Name: ao-ansible-challenge*

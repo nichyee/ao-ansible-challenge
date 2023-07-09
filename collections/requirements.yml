@@ -1,7 +1,14 @@
 ---
 roles:
-  - name: ec2
-    src: ../roles/ec2
+  - src: ../roles/ec2
+    name: ec2
 
-  - name: webserver
-    src: ../roles/webserver
+  - src: ../roles/webserver
+    name: webserver
+  
+  - src: ../roles/vpc
+    name: vpc
+
+
+collections:
+  - amazon.aws

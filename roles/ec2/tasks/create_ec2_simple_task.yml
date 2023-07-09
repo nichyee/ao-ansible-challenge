@@ -3,7 +3,7 @@
 - name: launch new instance + user data
   amazon.aws.ec2_instance:
     name: amazonlinux2a
-    region: ap-southeast-3
+    region: ap-southeast-2
     key_name: ec2-user
     instance_type: t3.micro
     security_group: ssh-web
