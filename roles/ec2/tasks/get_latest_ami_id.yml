@@ -1,0 +1,16 @@
+---
+- name: Get latest ami id of specified distro
+  amazon.aws.ec2_ami_info:
+    region: "{{ vpc_region }}"
+    filters:
+      name: RHEL-9*
+      architecture: x86_64
+      block-device-mapping.volume-type: gp2
+      virtualization-type: hvm
+      state: "available"
+  register: amis
+
+- name: Extract the most recently created AMI from the list
+  debug:
+    msg: "{{ amis.images[-1].image_id }}"
+  register: latest_ami

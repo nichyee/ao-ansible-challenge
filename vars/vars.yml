@@ -10,4 +10,24 @@ security_group_id: "sg-0320ad848fa1c7fe3"
 accesskey: "none"
 secretkey: "none"
   
-vpc_name: nyee-test-vpc
+common_name: ao_ansible_challenge
+
+vpc_region: ap-southeast-2
+vpc_cidr: 10.0.0.0/16
+vpc_subnet_a_cidr: 10.0.1.0/28
+vpc_subnet_b_cidr: 10.0.2.0/28
+vpc_subnet_c_cidr: 10.0.3.0/28
+ec2_ami_id: ami-0fe791c0ace58322c
+ec2_key_name: nyee_key
+ec2_instances: [{
+    "name": "ao_ansible_challenge_memory_game",
+    "instance_type": "t2.micro",
+    "subnet_az": a,
+    "raw_url": "https://raw.githubusercontent.com/Metroxe/one-html-page-challenge/master/entries/memory-game.html"
+  },
+  {
+    "name": "ao_ansible_challenge_baby_milk",
+    "instance_type": "t2.micro",
+    "subnet_az": b,
+    "raw_url": "https://raw.githubusercontent.com/Metroxe/one-html-page-challenge/master/entries/BabyWantsMilk.html"
+  }]

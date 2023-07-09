@@ -1,0 +1,22 @@
+---
+
+- name: launch new instance with user data
+  amazon.aws.ec2_instance:
+    name: "{{ ec2_name }}"
+    region: "{{ vpc_region }}"
+    key_name: "{{ key_name }}"
+    instance_type: "{{ instance_type }}"
+    security_group: "{{ ec2_security_group }}"
+    vpc_subnet_id: "{{ ec2_subnet_id }}"
+    network:
+      assign_public_ip: true
+      delete_on_termination: true
+    image_id: "{{ ami_id }}"
+    user_data: "{{ lookup('template', '../files/user_data.j2') }}"
+    volumes: 
+      - device_name: /dev/sda1
+        ebs: 
+          volume_size: 10
+          volume_type: gp2
+          delete_on_termination: true
+          

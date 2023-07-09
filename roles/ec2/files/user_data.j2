@@ -1,0 +1,7 @@
+#!/bin/bash
+sudo yum update -y
+sudo yum install -y httpd curl chrony
+timedatectl set-timezone "Australia/Melbourne"
+sudo systemctl enable httpd
+curl {{ item.raw_url }} > /var/www/html/index.html
+sudo systemctl start httpd

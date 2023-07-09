@@ -9,6 +9,26 @@
         name: vpc
         tasks_from: vpc_task.yml
 
+    # - name: Get AMI ID
+    #   import_role:
+    #     name: ec2
+    #     tasks_from: get_latest_ami_id.yml
+    # TODO: Fix module returning incorrect ami id 
+
+    - name: Launch ec2
+      include_role:
+        name: ec2
+        tasks_from: create_ec2_task.yml
+      vars:
+        instance_type: "{{ item.instance_type }}"
+        ec2_security_group: "{{ vpc_sg.group_id }}"
+        #ec2_subnet_id: "{{ aza_apse2.subnet.id if item.instance_type == 'a' else azb_apse2.subnet.id if item.instance_type == 'b' else azc_apse2.subnet.id if item.instance_type == 'c' }}"
+        ec2_subnet_id: "{{ aza_apse2.subnet.id }}" #putting it all in one since running out of time to dynamically generate subnet ids inline
+        ami_id: "{{ ec2_ami_id }}"
+        ec2_name: "{{ item.name }}"
+        key_name: "{{ ec2_key_name }}"
+      loop: "{{ ec2_instances }}"
+
 # - name: Create ec2
 #   hosts: localhost
 #   vars_files:
