@@ -11,16 +11,18 @@ Ideally, this would take place through a pipeline / container, however, without 
 
 This playbook requires that the user has already provisioned a key pair in AWS that will be used to ssh into the created instances.
 
-Role Variables
+Playbook Variables
 --------------
 
 | Name | Description |
 |------|-------------|
-| ec2_name | Name to be provided to the ec2 instance |
+| common_name | The name to be used for the VPC and as the prefix for other resources |
 | aws_region | The name of the AWS region to deploy resources | 
-| ec2_key_name | Name of the created key used to ssh into instance |
-| ec2_instance_type | Size / type of instance to deploy web app on | 
-| ec2_security_group | Either the name or ID of security group that will be assigned to the instance |
-| ec2_subnet_id | ID of the subnet to deploy the ec2 into |
-| ec2_ami_id | The AMI ID used to deploy the instance | 
-| raw_url | URL to the raw HTML of the single page web app | 
+| vpc_cidr | CIDR to be assigned to the VPC | 
+| vpc_subnet_a_cidr | Subnet CIDR to be assigned to the A Availability Zone |
+| vpc_subnet_b_cidr | Subnet CIDR to be assigned to the B Availability Zone |
+| vpc_subnet_c_cidr | Subnet CIDR to be assigned to the C Availability Zone |
+| key_pair_name | Name of the created key used to ssh into instance |
+| ami_id | The AMI ID used to deploy the instance | 
+| ec2_instances | A list of dictionaries that allows the playbook to deploy as many ec2 instances as neccessary | 
+
