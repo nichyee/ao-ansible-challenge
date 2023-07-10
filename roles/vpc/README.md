@@ -17,8 +17,9 @@ Role Variables
 
 Example Use
 ----------------
-
+```yaml
 - name: Setup VPC
   ansible.builtin.import_role:
     name: vpc
     tasks_from: vpc_task.yml
+```

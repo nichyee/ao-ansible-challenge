@@ -24,22 +24,3 @@ Role Variables
 | ec2_subnet_id | ID of the subnet to deploy the ec2 into |
 | ec2_ami_id | The AMI ID used to deploy the instance | 
 | raw_url | URL to the raw HTML of the single page web app | 
-
-
-Example Use
-----------------
-
-```yaml
-- name: Launch ec2
-  ansible.builtin.include_role:
-    name: ec2
-    tasks_from: create_ec2_task.yml
-  vars:
-    ec2_instance_type: "{{ item.instance_type }}"
-    ec2_security_group: "{{ vpc_sg.group_id }}"
-    ec2_subnet_id: "{{ aza_apse2.subnet.id }}"
-    ec2_ami_id: "{{ ami_id }}"
-    ec2_name: "{{ item.name }}"
-    ec2_key_name: "{{ key_pair_name }}"
-  with_items: "{{ ec2_instances }}"
-```
