@@ -1,45 +1,45 @@
-- name: create vpc
+- name: Create vpc
   amazon.aws.ec2_vpc_net:
     name: "{{ common_name }}"
     cidr_block: "{{ vpc_cidr }}"
-    region: "{{ vpc_region }}"
+    region: "{{ aws_region }}"
   register: vpc
 
-- name: create subnet for first az
+- name: Create subnet for first az
   amazon.aws.ec2_vpc_subnet:
     vpc_id: "{{ vpc.vpc.id }}"
     state: present
-    az: "{{ vpc_region }}a"
+    az: "{{ aws_region }}a"
     cidr: "{{ vpc_subnet_a_cidr }}"
     tags: {"Name": "{{ common_name }}_az_a"}
   register: aza_apse2
 
-- name: create subnet for second az
+- name: Create subnet for second az
   amazon.aws.ec2_vpc_subnet:
     vpc_id: "{{ vpc.vpc.id }}"
     state: present
-    az: "{{ vpc_region }}b"
+    az: "{{ aws_region }}b"
     cidr: "{{ vpc_subnet_b_cidr }}"
     tags: {"Name": "{{ common_name }}_az_b"}
   register: azb_apse2
 
-- name: create subnet for third az
+- name: Create subnet for third az
   amazon.aws.ec2_vpc_subnet:
     vpc_id: "{{ vpc.vpc.id }}"
     state: present
-    az: "{{ vpc_region }}c"
+    az: "{{ aws_region }}c"
     cidr: "{{ vpc_subnet_c_cidr }}"
     tags: {"Name": "{{ common_name }}_az_c"}
   register: azc_apse2
 
-- name: create internet gateway
+- name: Create internet gateway
   amazon.aws.ec2_vpc_igw:
     vpc_id: "{{ vpc.vpc.id }}"
     state: present
     tags: {"Name": "{{ common_name }}_igw"}
   register: igw
 
-- name: create custom route table
+- name: Create custom route table
   amazon.aws.ec2_vpc_route_table:
     vpc_id: "{{ vpc.vpc.id }}"
     region: ap-southeast-2
@@ -52,12 +52,12 @@
         gateway_id: "{{ igw.gateway_id }}"
     tags: {"Name": "{{ common_name }}_rtb"}
 
-- name: create security group
-  amazon.aws.ec2_group:
+- name: Create security group
+  amazon.aws.ec2_security_group:
     name: "{{ common_name }}_ssh_http"
     description: allow ssh and http
     vpc_id: "{{ vpc.vpc.id }}"
-    region: "{{ vpc_region }}"
+    region: "{{ aws_region }}"
     rules:
       - proto: tcp
         ports: 22

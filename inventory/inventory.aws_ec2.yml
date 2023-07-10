@@ -5,4 +5,4 @@ regions:
 filters:
   # All instances with their state as `running`
   instance-state-name: running
-  tag:Name: ao-ansible-challenge*
+  tag:Name: ao_ansible_challenge*

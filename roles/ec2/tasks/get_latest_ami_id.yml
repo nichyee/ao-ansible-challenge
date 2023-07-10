@@ -1,7 +1,10 @@
 ---
+# IN DEVELOPMENT
+# Doesn't work as intended
+
 - name: Get latest ami id of specified distro
   amazon.aws.ec2_ami_info:
-    region: "{{ vpc_region }}"
+    region: "{{ aws_region }}"
     filters:
       name: RHEL-9*
       architecture: x86_64
@@ -11,6 +14,6 @@
   register: amis
 
 - name: Extract the most recently created AMI from the list
-  debug:
+  ansible.builtin.debug:
     msg: "{{ amis.images[-1].image_id }}"
   register: latest_ami
