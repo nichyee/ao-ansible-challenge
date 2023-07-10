@@ -28,7 +28,7 @@ Role Variables
 
 Example Use
 ----------------
-
+```
 - name: Launch ec2
   ansible.builtin.include_role:
     name: ec2
@@ -41,3 +41,4 @@ Example Use
     ec2_name: "{{ item.name }}"
     ec2_key_name: "{{ key_pair_name }}"
   with_items: "{{ ec2_instances }}"
+```
