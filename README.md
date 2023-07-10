@@ -28,7 +28,8 @@ Role Variables
 
 Example Use
 ----------------
-```
+
+```yaml
 - name: Launch ec2
   ansible.builtin.include_role:
     name: ec2
